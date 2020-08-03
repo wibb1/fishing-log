@@ -8,7 +8,6 @@ FactoryBot.define do
     username {'username'}
     password { 'password' }
     password_confirmation { 'password' }
-    #trip
   end
 end
 
@@ -18,11 +17,10 @@ FactoryBot.define do
     success {'success'}
     species {'species'}
     body {'body'}
-    latitude {'latitude'}
-    longitude {'longitude'}
+    latitude {0}
+    longitude {0}
     trip_date {'trip_date'}
     trip_time {'trip_time'}
-    user_id {}
   end
 
 end
