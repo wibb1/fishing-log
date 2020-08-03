@@ -1,13 +1,15 @@
-require 'rails-helper'
+require 'rails_helper'
 
-  Rspec.dexcribe Api::V1::TripsController, type: :controller do
+  RSpec.describe Api::V1::TripsController, type: :controller do
     describe "GET#Index" do
-      let!(:trip1) {FactoryBot.create(:trip)}
-      let!(:trip2) {FactoryBot.create(:trip)}
+      let!(:user1) {FactoryBot.create(:user)}
+      
+      # let!(:trip1) {{}}
 
       it "returns a status of 200" do
+binding.pry
         get :index
-        
+
         expect(response.status).to eq 200
         expect(response.content_type).to eq "application/json"
       end
@@ -16,10 +18,8 @@ require 'rails-helper'
         get :index
 
         returned_json = JSON.parse(response.body)
-        expect(returned_json["trips"][0]["name"]).to eq(product1.name)
-        expect(returned_json["trips"][0]["body"]).to eq(product1.body)
-        expect(returned_json["trips"][1]["name"]).to eq(product2.name)
-        expect(returned_json["trips"][1]["body"]).to eq(product2.body)
+        expect(returned_json["trips"][0]["name"]).to eq(trip1.name)
+        expect(returned_json["trips"][0]["body"]).to eq(trip1.body)
       end
     end
   end
