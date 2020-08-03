@@ -8,6 +8,7 @@
 
 user1 = User.create(first_name: "Will", last_name: "Campbell", password: "apple", email: "wibb1@aol.com")
 trip1 = Trip.create(name: "first trip", success: "good", species: "blues", body: "The blues were thick off the rock 100 yards from shore")
+trip2 = Trip.create(name: "second trip", success: "bad", species: "none", body: "Couldn't catch a cold")
   # t.string :name, null: false
   # t.string :success, null: false
   # t.string :species, null: false

@@ -9,6 +9,8 @@ class AddTrips < ActiveRecord::Migration[5.2]
       t.decimal :longitude
       t.date :trip_date
       t.time :trip_time
+      t.belongs_to :user, null: false
+      t.boolean :private, defalut: false
 
       t.timestamps
     end
