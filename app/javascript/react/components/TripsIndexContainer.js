@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import TripTile from './TripTile';
 
 const TripsIndexContainer = (props) => {
-	const [trips, setTrips] = useState([]);
+  const [trips, setTrips] = useState([]);
+  
 	useEffect(() => {
     fetch('/api/v1/trips')
       .then((response) => {
@@ -27,7 +28,9 @@ const TripsIndexContainer = (props) => {
       <TripTile
       key={trip.id}
       id={trip.id}
-      title={trip.title}
+      name={trip.name}
+      success={trip.success}
+      species={trip.species}
       body={trip.body}
       />
     )

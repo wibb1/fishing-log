@@ -24,8 +24,11 @@ ActiveRecord::Schema.define(version: 2020_07_30_021441) do
     t.decimal "longitude"
     t.date "trip_date"
     t.time "trip_time"
+    t.bigint "user_id", null: false
+    t.boolean "private"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_trips_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_07_30_021441) do
     t.datetime "updated_at", null: false
     t.string "first_name", null: false
     t.string "last_name", null: false
+    t.string "username", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
