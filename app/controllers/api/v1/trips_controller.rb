@@ -1,5 +1,6 @@
 class Api::V1::TripsController < ApiController
   def index
+    binding.pry
     render json: Trip.all
     #render json: user, serializer: UserSerializer
     #binding.pry
