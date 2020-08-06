@@ -5,7 +5,7 @@ FactoryBot.define do
     sequence(:email) {|n| "user#{n}@example.com" }
     first_name { 'first_name' }
     last_name { 'last_name' }
-    username {'username'}
+    sequence(:username) { |n| "username#{n}" } 
     password { 'password' }
     password_confirmation { 'password' }
   end
@@ -19,8 +19,6 @@ FactoryBot.define do
     body {'body'}
     latitude {0}
     longitude {0}
-    trip_date {'trip_date'}
-    trip_time {'trip_time'}
   end
 
 end
