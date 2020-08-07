@@ -1,24 +1,47 @@
 require 'rails_helper'
 
-  RSpec.describe Api::V1::TripsController, type: :controller do
-    describe "GET#Index" do
-      let!(:user1) {FactoryBot.create(:user)}
-      let!(:trip1) {FactoryBot.create(:trip, user_id: user1.id)}
+RSpec.describe Api::V1::TripsController, type: :controller do
+  describe "GET#Index" do
+    let!(:user1) {FactoryBot.create(:user)}
+    let!(:trip1) {FactoryBot.create(:trip, user_id: user1.id)}
+    let!(:user2) {FactoryBot.create(:user)}
+    let!(:trip2) {FactoryBot.create(:trip, user_id: user2.id)}
+    let!(:trip3) {FactoryBot.create(:trip, user_id: user1.id)}
 
-      it "returns a status of 200" do
 
-        get :index
+    it "returns a status of 200" do
+      
+      sign_in user1
+      
+      get :index
 
-        expect(response.status).to eq 200
-        expect(response.content_type).to eq "application/json"
-      end
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq "application/json"
 
-      it "returns all the trips in the database" do
-        get :index
+      sign_out user1
+    end
 
-        returned_json = JSON.parse(response.body)
-        expect(returned_json[0]["name"]).to eq(trip1.name)
-        expect(returned_json[0]["body"]).to eq(trip1.body)
-      end
+    it "returns all the user1 trips in the database" do
+    
+      sign_in user1
+      
+      get :index
+
+      returned_json = JSON.parse(response.body)
+      expect(returned_json[0]["name"]).to eq(trip1.name)
+      
+      sign_out user1
+    end
+
+    it "does not include the trips for user2" do
+      sign_in user1
+      
+      get :index
+
+      returned_json = JSON.parse(response.body)
+      expect(returned_json[1]).not_to include(trip2.name)
+
+      sign_out user1
     end
   end
+end

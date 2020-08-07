@@ -1,4 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
+<<<<<<< HEAD
   attributes :id, :email, :first_name, :last_name, :username, :trips
 
   def trips
@@ -32,3 +33,7 @@ end
 # t.string "username", null: false
 # t.index ["email"], name: "index_users_on_email", unique: true
 # t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+=======
+  attributes :id
+end
+>>>>>>> master

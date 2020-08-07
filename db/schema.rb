@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_07_30_021441) do
     t.text "body"
     t.decimal "latitude"
     t.decimal "longitude"
-    t.date "trip_date"
     t.time "trip_time"
     t.bigint "user_id", null: false
     t.boolean "private"
