@@ -9,15 +9,3 @@ trip2 = Trip.create!(name: "Tommy's second trip", success: "bad", species: "none
 trip2 = Trip.create!(name: "Johny's first trip", success: "Good", species: "none", body: "Johny - Trolling for blues and My son and I had a ball", latitude: 41.59, longitude: -70.843, user_id: User.second.id)
 
 trip2 = Trip.create!(name: "Johny's second trip", success: "bad", species: "none", body: "Johny - Couldn't catch a cold", latitude: 41.59, longitude: -70.843, user_id: User.second.id)
-
-
-# t.string :name, null: false
-# t.string :success, null: false
-# t.string :species, null: false
-# t.text :body
-# t.decimal :latitude
-# t.decimal :longitude
-# t.date :trip_date
-# t.time :trip_time
-# t.belongs_to :user, null: false
-# t.boolean :private, defalut: false

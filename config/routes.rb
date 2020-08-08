@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   root 'pages#home'
   devise_for :users
   
-  get '/homes', to: "homes#index"
+  get '/trips', to: "trips#index"
+
+  resources :trips, only: [:new, :create]
 
   namespace :api do
     namespace :v1 do
