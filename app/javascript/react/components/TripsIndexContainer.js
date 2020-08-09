@@ -35,6 +35,7 @@ const TripsIndexContainer = (props) => {
         success={trip.success}
         species={trip.species}
         body={trip.body}
+        latitude={trip.latitude}
       />
     )
   })
