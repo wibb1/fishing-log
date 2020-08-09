@@ -28,7 +28,6 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       get :index
 
       returned_json = JSON.parse(response.body)
-      binding.pry
       expect(returned_json["trips"][0]["name"]).to eq(trip1.name)
       
       sign_out user1
