@@ -18,6 +18,10 @@
     <div class="navbar-brand">
       <img class="navbar-item has-background-dark" src="https://clipartion.com/wp-content/uploads/2015/11/bass-fish-outline-clip-art-free-clipart-images2.png" width="112" height="28">
       
+      <div class="navbar-item">
+        <p class="is-size-1 has-text-weight-bold has-text-centered">The Fishing Log </a>
+      </div>
+
       <div class="navbar-burger burger" data-target="Options" aria-label="menu" aria-expanded="false" id="burger">
         <span></span>
         <span></span>
@@ -27,17 +31,18 @@
     </div>
     <div class="navbar-menu" id="Options">
       <div class="navbar-start">
-        <a class="navbar-item" href="/homes">Home</a>
+          
       </div>
       <div class="navbar-end">
         <div class="navbar-item is-hoverable">
-          <!---a class="navbar-link">Log In/Out</a--->
-          <div class="navbar">
+          <div class="navbar-item">
+            <a class="button has-text-weight-bold m-md" href="/"> Home </a>
+            <a class="button has-text-weight-bold m-md" href="/homes"> Your Spots </a>
             <%- if current_user -%>
-                <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "navbar-item" %>
+                <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "button is-dark m-md" %>
               <%- else -%>
-                <%= link_to 'Sign Up', new_user_registration_path, class: "navbar-item" %>
-                <%= link_to 'Sign In', new_user_session_path, class: "navbar-item"  %>
+                <%= link_to 'Sign Up', new_user_registration_path, class: "button is-dark m-md" %>
+                <%= link_to 'Sign In', new_user_session_path, class: "button is-dark m-md"  %>
               <%- end -%>
           </div>
         </div>
