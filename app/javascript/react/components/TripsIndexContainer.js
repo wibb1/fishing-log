@@ -4,6 +4,8 @@ import TripTile from './TripTile';
 
 const TripsIndexContainer = (props) => {
   const [trips, setTrips] = useState([]);
+
+  const [user, setUser] =useState([])
   
 	useEffect(() => {
     fetch('/api/v1/trips')
@@ -18,7 +20,8 @@ const TripsIndexContainer = (props) => {
       })
       .then((response) => response.json())
       .then((response) => {
-        setTrips(response)
+        setTrips(response.trips)
+        setUser(response.user)
       })
       .catch((error) => console.error(`error in fetch: ${error.message}`))
   }, []);
@@ -26,12 +29,12 @@ const TripsIndexContainer = (props) => {
   const tripTiles = trips.map((trip) => {
     return (
       <TripTile
-      key={trip.id}
-      id={trip.id}
-      name={trip.name}
-      success={trip.success}
-      species={trip.species}
-      body={trip.body}
+        key={trip.id}
+        id={trip.id}
+        name={trip.name}
+        success={trip.success}
+        species={trip.species}
+        body={trip.body}
       />
     )
   })

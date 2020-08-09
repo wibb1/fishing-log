@@ -28,7 +28,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       get :index
 
       returned_json = JSON.parse(response.body)
-      expect(returned_json[0]["name"]).to eq(trip1.name)
+      expect(returned_json["trips"][0]["name"]).to eq(trip1.name)
       
       sign_out user1
     end
@@ -39,9 +39,40 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       get :index
 
       returned_json = JSON.parse(response.body)
-      expect(returned_json[1]).not_to include(trip2.name)
+      expect(returned_json["trips"][1]).not_to include(trip2.name)
 
       sign_out user1
     end
   end
+
+  describe "GET#Show" do
+    let!(:user1) {FactoryBot.create(:user)}
+    let!(:trip1) {FactoryBot.create(:trip, user_id: user1.id)}
+    let!(:user2) {FactoryBot.create(:user)}
+    let!(:trip2) {FactoryBot.create(:trip, user_id: user2.id)}
+    let!(:trip3) {FactoryBot.create(:trip, user_id: user1.id)}
+
+    it "returns a status of 200" do
+      sign_in user1
+      
+      get :show, params: { id: trip1.id }
+
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq "application/json"
+
+      sign_out user1
+    end
+
+    it "returns json of /trips/:id" do
+      sign_in user1
+
+      get :show, params: { id: trip1.id }
+      returned_json = JSON.parse(response.body)
+
+      expect(returned_json["trip"]["name"]).to eq(trip1.name)
+
+      sign_out user1
+    end
+  end
+
 end
