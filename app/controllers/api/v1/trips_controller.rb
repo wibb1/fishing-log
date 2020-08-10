@@ -1,6 +1,5 @@
 class Api::V1::TripsController < ApiController
   def index
-    render json: current_user.trips
     render json: { user: current_user, trips: current_user.trips }
   end
 
