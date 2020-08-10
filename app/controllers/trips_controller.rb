@@ -5,7 +5,7 @@ class TripsController < ApplicationController
 
   def new
     @trip = Trip.new
-    @species_list = ["striped bass", "fluke", "bluefish", "bonita", "false ablicore", "scup"]
+    @species_list = ["striped bass", "fluke", "bluefish", "bonita", "false ablicore", "scup", "tautog"]
   end
 
   def edit
@@ -27,6 +27,14 @@ class TripsController < ApplicationController
       flash.now[:error] = @trip.errors.full_messages.to_sentence
       render :new
     end
+  end
+
+  def edit
+    @trip = Trip.find(params[:id])
+  end
+
+  def update
+
   end
 
   private
