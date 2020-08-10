@@ -1,24 +1,24 @@
 <section class="hero">
   <div class="hero-body">
     <div class="container">
-      <h1 class="title">New Trip</h1>
+      <h1 class="title">Edit Trip</h1>
     </div>
   </div>
 </section>
 
-<div class="section-indent">
+<div class="section-indent m-md">
   <div class="container has-text-dark">
     <%= form_for(@trip) do |f| %>
     
       <div class="field">
         <%= f.label :name, :class => "label" %>
         <div class="control">
-          <%= f.text_field :name, placeholder: "Name", :class => "input" %>
+          <%= f.text_field :name, placeholder: "Spot Name", :class => "input" %>
         </div>
       </div>
 
       <div class="field">
-        <%= f.label :success, :class => "label" %>
+        <%= f.label :success, "How was the fishing?", :class => "label" %>
         <div class="control">
           <div class="select">
             <%= f.select :success, ["Good", "Bad"], :prompt => "Select One" %>
@@ -36,7 +36,7 @@
       </div>
 
       <div class="field">
-        <%= f.label :body, "Description", :class => "label" %>
+        <%= f.label :body, "Spot Description", :class => "label" %>
         <div class="control">
           <%= f.text_area :body, placeholder: "Description", :class => "input" %>
         </div>
@@ -45,29 +45,29 @@
       <div class="field">
         <%= f.label :latitude, :class => "label" %>
         <div class="control">
-          <%= f.number_field :latitude, placeholder: "Latitude", :class => "input" %>
+          <%= f.number_field :latitude, placeholder: "Typically 41.3 to 41.8", :class => "input" %>
         </div>
       </div>
 
       <div class="field">
         <%= f.label :longitude, :class => "label" %>
         <div class="control">
-          <%= f.number_field :longitude, placeholder: "Longitude", :class => "input" %>
+          <%= f.number_field :longitude, placeholder: "Typically -70 to -70.6", :class => "input" %>
         </div>
       </div>
 
       <div class="field">
         <%= f.label :trip_time, :class => "label" %>
         <div class="control">
-          <%= f.datetime_local_field :longitude, placeholder: "Longitude", :class => "input" %>
+          <%= f.datetime_local_field :trip_time, :class => "input" %>
         </div>
       </div>
 
       <div class="field">
-        <%= f.label :private, :class => "label" %>
+        <%= f.label :shared, :class => "label" %>
         <div class="control">
           <div class="select">
-            <%= f.select :private, ["Shared", "Private"], :prompt => "Select One" %>
+            <%= f.select :shared, ["Shared", "Private"], :prompt => "Select One" %>
           </div>
         </div>
       </div>      

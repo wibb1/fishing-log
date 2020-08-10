@@ -20,6 +20,6 @@ class Api::V1::TripsController < ApiController
   private
 
   def trip_params
-    params.require(:trip).permit(:name, :success, :species, :body, :latitude, :longitude, :trip_time, :private)
+    params.require(:trip).permit(:name, :success, :species, :body, :latitude, :longitude, :trip_time, :shared)
   end
 end

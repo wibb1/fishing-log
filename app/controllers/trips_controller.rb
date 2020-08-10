@@ -8,6 +8,16 @@ class TripsController < ApplicationController
     @species_list = ["striped bass", "fluke", "bluefish", "bonita", "false ablicore", "scup"]
   end
 
+  def edit
+    @trip= Trip.find(params[:id])
+  end
+
+  def update
+    @trip= Trip.find(params[:id])
+    @article.update(title: params[:article][:title], description: params[:article][:description])
+    redirect_to "/trips/#{@trip.id}"
+  end
+
   def create
     @trip = Trip.new(trip_params)
     if @trip.save
@@ -22,6 +32,6 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:name, :success, :species, :body, :latitude, :longitude, :trip_time, :private)
+    params.require(:trip).permit(:name, :success, :species, :body, :latitude, :longitude, :trip_time, :shared)
   end
 end
