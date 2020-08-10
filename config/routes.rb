@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   
   get '/trips', to: "trips#index"
 
-  resources :trips, only: [:new, :create]
+  resources :trips, only: [:new, :create, :destroy, :edit, :update]
 
   namespace :api do
     namespace :v1 do
-      resources :trips, only: [:index] 
+      resources :trips, only: [:index]
     end
   end
 end
