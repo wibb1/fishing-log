@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   
   get '/trips', to: "trips#index"
-
+  get 'trips/:id', to: "trips#index"
+  
   resources :trips, only: [:new, :create, :destroy, :edit, :update]
 
   namespace :api do
