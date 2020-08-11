@@ -8,7 +8,9 @@
 
 <div class="section-indent m-md">
   <div class="container has-text-dark">
-    <%= form_for(@trip) do |f| %>
+  <%= form_for(@trip, url: trips_path(@trip.id)) do |f| %>
+
+ 
     
       <div class="field">
         <%= f.label :name, :class => "label" %>
@@ -45,14 +47,14 @@
       <div class="field">
         <%= f.label :latitude, :class => "label" %>
         <div class="control">
-          <%= f.number_field :latitude, placeholder: "Typically 41.3 to 41.8", :class => "input" %>
+          <%= f.number_field :latitude, step: :any, placeholder: "Typically 41.3 to 41.8", :class => "input" %>
         </div>
       </div>
 
       <div class="field">
         <%= f.label :longitude, :class => "label" %>
         <div class="control">
-          <%= f.number_field :longitude, placeholder: "Typically -70 to -70.6", :class => "input" %>
+          <%= f.number_field :longitude, step: :any, placeholder: "Typically -70 to -70.6", :class => "input" %>
         </div>
       </div>
 
@@ -70,7 +72,7 @@
             <%= f.select :shared, ["Shared", "Private"], :prompt => "Select One" %>
           </div>
         </div>
-      </div>      
+      </div>    
 
       <div class="field">
         <%= f.submit "Submit", :class =>"button is-primary has-text-weight-bold" %>

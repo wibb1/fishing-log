@@ -8,7 +8,8 @@
 
 <div class="section-indent m-md">
   <div class="container has-text-dark">
-    <%= form_for(@trip) do |f| %>
+  <%= form_for(@trip, url: trips_path, html: { method: :patch }) do |f| %>
+    
     
       <div class="field">
         <%= f.label :name, :class => "label" %>
@@ -30,7 +31,7 @@
         <%= f.label :species, :class => "label" %>
         <div class="control">
           <div class="select">
-            <%= f.select :species, @species_list, :prompt => "Select One" %>
+            <%= f.select(:species, @species_list, :default => :species) %>
           </div>
         </div>
       </div>
@@ -59,7 +60,7 @@
       <div class="field">
         <%= f.label :trip_time, :class => "label" %>
         <div class="control">
-          <%= f.datetime_local_field :trip_time, :class => "input" %>
+          <%= f.datetime_local_field :trip_time, :default => :trip_time, :class => "input" %>
         </div>
       </div>
 
