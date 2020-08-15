@@ -18,7 +18,7 @@ class TripsController < ApplicationController
   
   def update
     if @trip.update(trip_params)
-      redirect_to "/trips/#{@trip.id}"
+      redirect_to "/trips/react/#{@trip.id}"
     else
       render 'edit'
     end
