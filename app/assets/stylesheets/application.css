@@ -14,17 +14,3 @@
  *= require_self
  
  */
-
- .center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.chart {
-  background-image: url("buzzards_bay_chart.png");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
