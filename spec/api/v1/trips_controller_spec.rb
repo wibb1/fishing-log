@@ -3,10 +3,21 @@ require 'rails_helper'
 RSpec.describe Api::V1::TripsController, type: :controller do
   describe "GET#Index" do
     let!(:user1) {FactoryBot.create(:user)}
-    let!(:trip1) {FactoryBot.create(:trip, user_id: user1.id)}
+  
+    time1 = DateTime.new(2020,6,20,5,6,30)
+
+    let!(:trip1) {FactoryBot.create(:trip, user_id: user1.id, trip_time: time1, text_date: time1.strftime("%m-%d-%Y %H:%M"))}
+
+    let!(:astro1) {FactoryBot.create(:astro, trip_id: trip1.id)}
+    let!(:tide1) {FactoryBot.create(:tide, trip_id: trip1.id)}
+    let!(:weather1) {FactoryBot.create(:weather, trip_id: trip1.id)}
+
+
     let!(:user2) {FactoryBot.create(:user)}
-    let!(:trip2) {FactoryBot.create(:trip, user_id: user2.id)}
-    let!(:trip3) {FactoryBot.create(:trip, user_id: user1.id)}
+
+    let!(:trip2) {FactoryBot.create(:trip, user_id: user2.id, trip_time: DateTime.new(2020,5,20,8,45,0), text_date: DateTime.new(2020,5,20,8,45,0).strftime("%m-%d-%Y %H:%M"))}
+
+    let!(:trip3) {FactoryBot.create(:trip, user_id: user1.id, trip_time: DateTime.new(2020,5,20,8,45,0), text_date: DateTime.new(2020,5,20,8,45,0).strftime("%m-%d-%Y %H:%M"))}
 
 
     it "returns a status of 200" do

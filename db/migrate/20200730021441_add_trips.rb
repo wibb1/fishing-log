@@ -4,14 +4,16 @@ class AddTrips < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.string :success, null: false
       t.string :species, null: false
-      t.text :body
-      t.decimal :latitude
-      t.decimal :longitude
-      t.time :trip_time
+      t.text :body, default: ""
+      t.decimal :latitude, default: 0.0, null: false
+      t.decimal :longitude, default: 0.0, null: false
+      t.datetime :trip_time, null: false
+      t.string :text_date, default: "", null: false
       t.belongs_to :user, null: false
       t.boolean :shared, defalut: false
 
       t.timestamps null: false
+
     end
   end
 end

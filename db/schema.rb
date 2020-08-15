@@ -10,19 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_30_021441) do
+ActiveRecord::Schema.define(version: 2020_08_13_195547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "astros", force: :cascade do |t|
+    t.text "astronomicalDawn", default: "", null: false
+    t.text "astronomicalDusk", default: "", null: false
+    t.text "civilDawn", default: "", null: false
+    t.text "civilDusk", default: "", null: false
+    t.float "moonFraction", default: 0.0, null: false
+    t.text "moonPhase", default: "", null: false
+    t.text "moonrise", default: "", null: false
+    t.text "moonset", default: "", null: false
+    t.text "sunset", default: "", null: false
+    t.text "sunrise", default: "", null: false
+    t.datetime "time", null: false
+    t.bigint "trip_id"
+    t.index ["trip_id"], name: "index_astros_on_trip_id"
+  end
+
+  create_table "tides", force: :cascade do |t|
+    t.datetime "date", null: false
+    t.float "first_type", default: 0.0, null: false
+    t.text "first_time", default: ""
+    t.float "second_type", default: 0.0, null: false
+    t.text "second_time", default: ""
+    t.float "third_type", default: 0.0, null: false
+    t.text "third_time", default: ""
+    t.float "fourth_type", default: 0.0, null: false
+    t.text "fourth_time", default: ""
+    t.bigint "trip_id"
+    t.index ["trip_id"], name: "index_tides_on_trip_id"
+  end
 
   create_table "trips", force: :cascade do |t|
     t.string "name", null: false
     t.string "success", null: false
     t.string "species", null: false
-    t.text "body"
-    t.decimal "latitude"
-    t.decimal "longitude"
-    t.time "trip_time"
+    t.text "body", default: ""
+    t.decimal "latitude", default: "0.0", null: false
+    t.decimal "longitude", default: "0.0", null: false
+    t.datetime "trip_time", null: false
+    t.string "text_date", default: "", null: false
     t.bigint "user_id", null: false
     t.boolean "shared"
     t.datetime "created_at", null: false
@@ -43,6 +74,27 @@ ActiveRecord::Schema.define(version: 2020_07_30_021441) do
     t.string "username", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "weathers", force: :cascade do |t|
+    t.datetime "time", null: false
+    t.string "text_date", null: false
+    t.float "airTemperature", default: 0.0, null: false
+    t.float "pressure", default: 0.0, null: false
+    t.float "cloudCover", default: 0.0, null: false
+    t.float "currentDirection", default: 0.0, null: false
+    t.float "currentSpeed", default: 0.0, null: false
+    t.float "gust", default: 0.0, null: false
+    t.float "humidity", default: 0.0, null: false
+    t.float "seaLevel", default: 0.0, null: false
+    t.float "visibility", default: 0.0, null: false
+    t.float "waveDirection", default: 0.0, null: false
+    t.float "waveHeight", default: 0.0, null: false
+    t.float "wavePeriod", default: 0.0, null: false
+    t.float "windDirection", default: 0.0, null: false
+    t.float "windSpeed", default: 0.0, null: false
+    t.bigint "trip_id"
+    t.index ["trip_id"], name: "index_weathers_on_trip_id"
   end
 
 end

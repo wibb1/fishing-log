@@ -55,3 +55,5 @@ gem 'devise'
 gem 'webpacker', '~> 3.3'
 gem "bulma-rails", "~> 0.9.0"
 gem "font-awesome-rails"
+gem 'faraday', '~> 0.9.2'
+gem 'fog-aws'

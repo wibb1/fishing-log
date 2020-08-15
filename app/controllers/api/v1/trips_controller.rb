@@ -1,25 +1,30 @@
 class Api::V1::TripsController < ApiController
   def index
-    render json: { user: current_user, trips: current_user.trips }
+    if params[:filter_for_shared]
+      trips = Trip.all
+    else 
+      trips = current_user.trips
+    end
+    
+    render json: { user: current_user, trips: serialized_data(trips, TripSerializer, current_user) }
   end
 
   def show
-    trip = Trip.find(params[:id])
-    render json: { user: current_user, trip: trip }
+    render json: Trip.find(params[:id]), serializer: TripShowSerializer
+    #Both of these show data at the api/v1/trips/1 endpoint
+     #trip = Trip.find(params[:id])
+     #render json: { user: current_user, trip: serialized_data(trip, TripSerializer, current_user)  }
   end
 
-  # def create
-  #   new_trip = Trip.new(trip_params)
-  #   if new_trip.save
-  #     render json: new_trip
-  #   else
-  #     render json: {errors: new_trip.errors.full_messages}
-  #   end
-  # end
+  def search
+    trips = Trip.where("ILIKE ?", "%#{params['search_string']}%")
+    render json: @trips
+  end
 
-  # private
+  private
 
-  # def trip_params
-  #   params.require(:trip).permit(:name, :success, :species, :body, :latitude, :longitude, :trip_time, :shared)
-  # end 
+  def serialized_data(data, serializer, scope)
+    ActiveModelSerializers::SerializableResource.new(data, each_serializer: serializer, scope: current_user)
+  end
+
 end

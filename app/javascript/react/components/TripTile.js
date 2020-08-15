@@ -1,39 +1,178 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const TripTile = ({ id, success, name, species, body, latitude, longitude, trip_time, user_id, shared }) => {
-  let success_class
-  if (success === "good") {
-    success_class="fas fa-thumbs-up"
-  } else {
-    success_class="fas fa-thumbs-down"
-  }
+const TripTile = ({
+	id,
+	success,
+	name,
+	species,
+	body,
+	latitude,
+	longitude,
+	trip_time,
+	user_id,
+	shared,
+	firstTime,
+	secondTime,
+	thirdTime,
+	fourthTime,
+	firstType,
+	secondType,
+	thirdType,
+	fourthType,
+	pressure,
+	humidity,
+	windDirection,
+	windSpeed,
+	moonFraction,
+	moonPhase,
+	sunrise,
+	sunset,
+}) => {
+	const success_color = (success) => {
+		let success_color;
+		if (success === 'good') {
+			success_color = 'is-success';
+		} else {
+			success_color = 'is-light';
+		}
+		return success_color;
+	};
 
-  return (
-    <div className="card"> 
-      <div className="card-content">
-        <div className="media">
-          <div className="media-left">
-            <i className="success_class"></i>
-          </div>
-          <div className="media-content">
-            <Link to={`/trips/${id}`} className="title is-4">{name}</Link>
-            <br></br>
-            <p className="subtitle is-6">{species}</p>
-          </div>
-          <div className="content">
-            <p>{body}</p>
-          </div>
-          <div>
-            <p>{latitude}</p>
-            <p>{longitude}</p>
-            <p>{trip_time}</p>
-            <p>{user_id}</p>
-            <p>{shared}</p>
-          </div>
-        </div>
-      </div>  
-    </div>
-  )}
+	return (
+		<div className="tile is-ancestor p-sm">
+			<div className="tile is-vertical">
+				<div className="tile is-parent">
+					<Link to={`/trips/react/${id}`}>
+						<div className={`tile is-child notification ${success_color(success)}`}>
+							<div className="columns">
+								<div className="column">
+									<div className="box">
+										<div className="column">
+											<p className="subtitle is-size-3 is-size-4-touch">
+												<strong>{name}</strong>
+											</p>
+										</div>
+									</div>
+									<div className="box">
+										<div className="column">
+											<div className="subtitle is-size-3 is-size-4-touch">
+												<p>{trip_time}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="columns">
+								<div className="column">
+									<div className="box">
+										<p className="subtitle is-size-4 is-5-touch has-text-weight-b">
+											<strong className="">Whats on the menu:</strong> {species}
+										</p>
+									</div>
+								</div>
+								<hr />
+							</div>
+							<div className="box">
+								<p className="is-6">{body}</p>
+							</div>
+							<div className="columns">
+								<div className="column m-2">
+									<div className="box center">
+										<table className="table has-text-centered">
+											<tbody>
+												<tr>
+													<th>Tide Time</th>
+													<th>Tide Height(aMSL)</th>
+												</tr>
+												<tr>
+													<td>{firstTime}</td>
+													<td>{firstType} </td>
+												</tr>
+												<tr>
+													<td>{secondTime}</td>
+													<td>{secondType}</td>
+												</tr>
+												<tr>
+													<td>{thirdTime}</td>
+													<td>{thirdType}</td>
+												</tr>
+												<tr>
+													<td>{fourthTime}</td>
+													<td>{fourthType}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div className="column">
+									<div className="box center">
+										<table className="table has-text-centered">
+											<tbody>
+												<tr>
+													<th>Measurement</th>
+													<th>Units</th>
+													<th>Value</th>
+												</tr>
+												<tr>
+													<td>Pressure</td>
+													<td>(in):</td>
+													<td>{pressure}</td>
+												</tr>
+												<tr>
+													<td>Humidity</td>
+													<td>(%):</td>
+													<td>{humidity}</td>
+												</tr>
+												<tr>
+													<td>Wind Direction </td>
+													<td>(degrees): </td>
+													<td>{windDirection}</td>
+												</tr>
+												<tr>
+													<td>Wind Speed </td>
+													<td>(mph): </td>
+													<td>{windSpeed}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div className="column is-centered">
+									<div className="box center">
+										<table className="table has-text-centered">
+											<tbody>
+												<tr>
+													<th>Moon Info</th>
+													<th>Value</th>
+												</tr>
+												<tr>
+													<td>Moon Fraction</td>
+													<td>{moonFraction}</td>
+												</tr>
+												<tr>
+													<td>Moon Phase</td>
+													<td>{moonPhase}</td>
+												</tr>
+												<tr>
+													<td>Sunrise</td>
+													<td>{sunrise}</td>
+												</tr>
+												<tr>
+													<td>Sunset</td>
+													<td>{sunset}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</Link>
+				</div>
+			</div>
+		</div>
+	);
+};
 
-export default TripTile
+export default TripTile;

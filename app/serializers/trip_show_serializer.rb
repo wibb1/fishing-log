@@ -1,5 +1,9 @@
 class TripShowSerializer < ActiveModel::Serializer
-  attributes :id, :name, :body, :success, :shared, :species, :user_id, :latitude, :longitude, :trip_time
+  attributes :id, :name, :success, :species, :body, :shared, :latitude, :longitude, :text_date, :tide, :weather, :astro, :user
 
-  has_many :users
+  belongs_to :user, if: :current_user?
+
+  def current_user?
+    current_user == object.user
+  end
 end

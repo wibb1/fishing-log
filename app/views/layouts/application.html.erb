@@ -6,10 +6,7 @@
   <%= csrf_meta_tags %>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
- 
-  <link rel="stylesheet" href="https://kit.fontawesome.com/9b9dc40647.js" crossorigin="anonymous">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
 </head>
 
 
@@ -17,10 +14,29 @@
 
   <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <img class="navbar-item has-background-dark" src="https://clipartion.com/wp-content/uploads/2015/11/bass-fish-outline-clip-art-free-clipart-images2.png" width="112" height="28">
-      
+
+<a class="navbar-item has-dark-background">
+
+  
+    <a class="navbar-item" width = "125", height="125" href=image_tag() > 
+      <img src=<%=image_tag("bass-fish.png")%> ></img> 
+    </a>
+
+    <a class="navbar-item" width = "125", height="125"> <img ><%=image_tag("bass-fish.png")%> </img> </a>
+   
+<!-- too small https://img.favpng.com/3/14/2/striped-bass-fishing-decal-clip-art-png-favpng-x6LKFnHCzaL6hLEmK5cpAGYRQ.jpg
+ <a class="navbar-item" width = "125", height="125"> <img ><%=image_tag("bass-fish.png")%> </img> </a>
+
+   <!--- Too Big Wrong Format
+<img class="navbar-item" width = "5", height="5"> <%=image_tag("bass-fish.png")%> </img>
+<!--- Too Small
+  <figure class="navbar-item has-background-dark">
+    <img class="", width = "125", height="125"> <%=image_tag("bass-fish.png")%> </img>
+  </figure>
+--->
+
       <div class="navbar-item">
-        <p class="is-size-1 has-text-weight-bold has-text-centered">The Fishing Log </a>
+        <p class="is-size-4-touch is-size-3-desktop is-size-2-widescreen is-size-1-fullhd has-text-weight-bold has-text-centered">The Fishing Log </a>
       </div>
 
       <div class="navbar-burger burger" data-target="Options" aria-label="menu" aria-expanded="false" id="burger">
@@ -32,14 +48,15 @@
     </div>
     <div class="navbar-menu" id="Options">
       <div class="navbar-start">
-        <a class="navbar-item" href="/trips">Home</a>
+        
       </div>
       <div class="navbar-end">
         <div class="navbar-item is-hoverable">
           <div class="navbar-item">
             <a class="button has-text-weight-bold m-md" href="/"> Home </a>
-            <a class="button has-text-weight-bold m-md" href="/trips"> Your Spots </a>
             <%- if current_user -%>
+                <a class="button has-text-weight-bold m-md" href="/trips/react"> Your Spots </a>
+                <a class="button has-text-weight-bold m-md" href="/trips/new"> New Spot </a>
                 <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "button is-dark m-md" %>
               <%- else -%>
                 <%= link_to 'Sign Up', new_user_registration_path, class: "button is-dark m-md" %>
