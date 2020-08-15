@@ -13,7 +13,7 @@ const TripShowContainer = (props) => {
 			.then((response) => {
 				
 				if (response.ok) {
-					// debugger
+
 					return response;
 				} else {
 					let errorMessage = `${response.status} (${response.statusText})`,
@@ -23,13 +23,12 @@ const TripShowContainer = (props) => {
 			})
 			.then((response) => response.json())
 			.then((body) => {
-				// debugger
+	
 				setTripState(body.trip)
 				})
 			.catch((error) => console.error(`Error in fetch: ${error.message}`));
 	}, []);
 
-						// debugger
 
 
 	return (  
