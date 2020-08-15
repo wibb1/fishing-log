@@ -10,9 +10,6 @@ class Weather < ApplicationRecord
   validates :humidity, presence: true
   validates :seaLevel, presence: true
   validates :visibility, presence: true
-  validates :waveDirection, presence: true
-  validates :waveHeight, presence: true
-  validates :wavePeriod, presence: true
   validates :windDirection, presence: true
   validates :windSpeed, presence: true
 

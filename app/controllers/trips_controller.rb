@@ -45,16 +45,16 @@ class TripsController < ApplicationController
       create_weather(start_time, @trip.id)
       create_tide(start_time, @trip.id)
       create_astro(start_time, @trip.id)
+
     else
       flash.now[:error] = @trip.errors.full_messages.to_sentence
       render :new
     end  
-
     
   end
 
   def create_weather(start_time, trip_id)
-    weather_request = 'airTemperature,pressure,cloudCover,currentDirection,currentSpeed,gust,humidity,seaLevel,visibility,waveDirection,waveHeight,wavePeriod,windDirection,windSpeed'
+    weather_request = 'airTemperature,pressure,cloudCover,currentDirection,currentSpeed,gust,humidity,seaLevel,visibility,windDirection,windSpeed'
     time_start = start_time.strftime("%Y-%m-%d")
     end_time = start_time.advance(hours: 1)
     time_end = end_time.strftime("%Y-%m-%d")
@@ -64,7 +64,7 @@ class TripsController < ApplicationController
     end
 
     weather_parsed_response = JSON.parse(weather_response.body)
-    
+    binding.pry
     data = weather_parsed_response["hours"][0]
 
     text_date = start_time.strftime("%m-%d-%Y %H:%M")
@@ -76,13 +76,10 @@ class TripsController < ApplicationController
     humidity = data["humidity"]["noaa"]
     
     visibility = data["visibility"]["noaa"]
-    waveDirection = data["waveDirection"]["noaa"]
-    waveHeight = data["waveHeight"]["noaa"]*3.28
-    wavePeriod = data["wavePeriod"]["noaa"]
     windDirection = data["windDirection"]["noaa"]
     windSpeed = data["windSpeed"]["noaa"]*2.237
     
-    @weather = Weather.new(time: start_time, text_date: text_date, airTemperature: airTemperature, pressure: pressure, cloudCover: cloudCover, visibility: visibility, gust: gust,humidity: humidity,  waveDirection: waveDirection, waveHeight: waveHeight, wavePeriod: wavePeriod, windDirection: windDirection, windSpeed: windSpeed)
+    @weather = Weather.new(time: start_time, text_date: text_date, airTemperature: airTemperature, pressure: pressure, cloudCover: cloudCover, visibility: visibility, gust: gust,humidity: humidity,  windDirection: windDirection, windSpeed: windSpeed)
     
     @weather.trip_id = trip_id
     
