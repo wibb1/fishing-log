@@ -18,13 +18,13 @@ trip4 = Trip.create!(name: "Fluke Fishing", success: "bad", species: "fluke", tr
 # trip6 = Trip.create!(name: "Woods Hole Trip - September", success: "good", species: "blue fish", trip_time: DateTime.new(2020,10,13,9,0,0), text_date: DateTime.new(2020,10,13,9,0,0).strftime("%m-%d-%Y %H:%M"),body: "Fun night chasing the bass inside the hole.  Had lots of great luck chunking fresh pogies after dark.  Nice night for a boat ride and the hole is a lot calmer after dark.", latitude: 41.52, longitude: -70.70,  user_id: user1.id, shared: false)
 
 # simple weather
-weather1 = Weather.create!(time: DateTime.new(2020,5,20,8,45,0), text_date: DateTime.new(2020,5,20,8,45,0).strftime("%m-%d-%Y %H:%M"), airTemperature: 54, pressure: 29, cloudCover: 0.2, currentDirection: 0,currentSpeed: 5, gust: 15, humidity: 62, seaLevel: 0.95, visibility: 2, waveDirection: 25, waveHeight: 1.5, wavePeriod: 8, windDirection: 25, windSpeed: 5, trip_id: trip1.id)
+weather1 = Weather.create!(time: DateTime.new(2020,5,20,8,45,0), text_date: DateTime.new(2020,5,20,8,45,0).strftime("%m-%d-%Y %H:%M"), airTemperature: 54, pressure: 29, cloudCover: 0.2, currentDirection: 0,currentSpeed: 5, gust: 15, humidity: 62, seaLevel: 0.95, visibility: 2, windDirection: 25, windSpeed: 5, trip_id: trip1.id)
 
-weather2 = Weather.create!(time: DateTime.new(2020,6,20,8,45,0), text_date: DateTime.new(2020,6,20,8,45,0).strftime("%m-%d-%Y %H:%M"),airTemperature: 54, pressure: 29, cloudCover: 0.2, currentDirection: 0,currentSpeed: 5, gust: 15, humidity: 62, seaLevel: 0.95, visibility: 2, waveDirection: 25, waveHeight: 1.5, wavePeriod: 8, windDirection: 25, windSpeed: 5, trip_id: trip2.id)
+weather2 = Weather.create!(time: DateTime.new(2020,6,20,8,45,0), text_date: DateTime.new(2020,6,20,8,45,0).strftime("%m-%d-%Y %H:%M"),airTemperature: 54, pressure: 29, cloudCover: 0.2, currentDirection: 0,currentSpeed: 5, gust: 15, humidity: 62, seaLevel: 0.95, visibility: 2, windDirection: 25, windSpeed: 5, trip_id: trip2.id)
 
-weather3 = Weather.create!(time: DateTime.new(2020,6,20,8,45,0), text_date: DateTime.new(2020,6,20,8,45,0).strftime("%m-%d-%Y %H:%M"),airTemperature: 54, pressure: 29, cloudCover: 0.2, currentDirection: 0,currentSpeed: 5, gust: 15, humidity: 62, seaLevel: 0.95, visibility: 2, waveDirection: 25, waveHeight: 1.5, wavePeriod: 8, windDirection: 25, windSpeed: 5, trip_id: trip3.id)
+weather3 = Weather.create!(time: DateTime.new(2020,6,20,8,45,0), text_date: DateTime.new(2020,6,20,8,45,0).strftime("%m-%d-%Y %H:%M"),airTemperature: 54, pressure: 29, cloudCover: 0.2, currentDirection: 0,currentSpeed: 5, gust: 15, humidity: 62, seaLevel: 0.95, visibility: 2, windDirection: 25, windSpeed: 5, trip_id: trip3.id)
 
-weather4 = Weather.create!(time: DateTime.new(2020,7,20,8,45,0), text_date: DateTime.new(2020,7,20,8,45,0).strftime("%m-%d-%Y %H:%M"),airTemperature: 54, pressure: 29, cloudCover: 0.2, currentDirection: 0,currentSpeed: 5, gust: 15, humidity: 62, seaLevel: 0.95, visibility: 2, waveDirection: 25, waveHeight: 1.5, wavePeriod: 8, windDirection: 25, windSpeed: 5, trip_id: trip4.id)
+weather4 = Weather.create!(time: DateTime.new(2020,7,20,8,45,0), text_date: DateTime.new(2020,7,20,8,45,0).strftime("%m-%d-%Y %H:%M"),airTemperature: 54, pressure: 29, cloudCover: 0.2, currentDirection: 0,currentSpeed: 5, gust: 15, humidity: 62, seaLevel: 0.95, visibility: 2, windDirection: 25, windSpeed: 5, trip_id: trip4.id)
 
 # simple tide
 
