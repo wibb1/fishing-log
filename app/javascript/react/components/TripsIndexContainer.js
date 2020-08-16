@@ -41,7 +41,7 @@ const TripsIndexContainer = (props) => {
 				body={trip.body}
 				latitude={trip.latitude}
 				longitude={trip.longitude}
-				trip_time={trip.text_date}
+				trip_time={trip.trip_time}
 				pressure={trip.weather.pressure}
 				humidity={trip.weather.humidity}
 				windDirection={trip.weather.windDirection}
@@ -54,6 +54,7 @@ const TripsIndexContainer = (props) => {
 				secondType={trip.tide.second_type}
 				thirdType={trip.tide.third_type}
 				fourthType={trip.tide.fourth_type}
+				text_date={trip.text_date}
 			/>
 		);
 	});

@@ -28,6 +28,7 @@ const TripTile = ({
 	moonPhase,
 	sunrise,
 	sunset,
+	text_date
 }) => {
 	const success_color = (success) => {
 		let success_color;
@@ -57,7 +58,7 @@ const TripTile = ({
 									<div className="box">
 										<div className="column">
 											<div className="subtitle is-size-3 is-size-4-touch">
-												<p>{trip_time}</p>
+												<p>{text_date}</p>
 											</div>
 										</div>
 									</div>
