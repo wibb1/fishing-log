@@ -58,16 +58,16 @@
       </div>
 
       <div class="field">
-        <%= f.label :trip_time, :class => "label" %>
+        <%= f.label :date, :class => "label" %>
         <div class="control">
-          <%= f.date :trip_date, :default => :trip_date, :class => "input" %>
+          <%= f.date_field :date, :default => :date, :class => "input" %>
         </div>
       </div>
 
       <div class="field">
-        <%= f.label :trip_time, :class => "label" %>
+        <%= f.label :time, :class => "label" %>
         <div class="control">
-          <%= f.time :trip_time, :default => :trip_time, :class => "input" %>
+          <%= f.time_field :time, :default => :time, :class => "input" %>
         </div>
       </div>
 

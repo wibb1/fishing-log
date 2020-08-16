@@ -31,6 +31,7 @@ class TripsController < ApplicationController
 
   def create
     binding.pry
+    
     start_time = DateTime.strptime(trip_params["trip_time"], "%Y-%m-%dT%H:%M")
           
     @trip = Trip.new()

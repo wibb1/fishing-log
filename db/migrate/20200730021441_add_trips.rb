@@ -7,8 +7,8 @@ class AddTrips < ActiveRecord::Migration[5.2]
       t.text :body
       t.decimal :latitude, null: false
       t.decimal :longitude, null: false
-      t.string :trip_date, null: false
-      t.string :trip_time, null: false
+      t.string :date, null: false
+      t.string :time, null: false
       t.belongs_to :user, null: false
       t.boolean :shared, defalut: false
 

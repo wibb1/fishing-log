@@ -26,14 +26,13 @@ ActiveRecord::Schema.define(version: 2020_08_13_195547) do
     t.string "moonset", default: "NA"
     t.string "sunset", default: "NA"
     t.string "sunrise", default: "NA"
-    t.string "time", default: "NA"
+    t.string "date", default: "NA"
     t.bigint "trip_id"
     t.index ["trip_id"], name: "index_astros_on_trip_id"
   end
 
   create_table "tides", force: :cascade do |t|
     t.string "date", null: false
-    t.string "time", null: false
     t.string "first_type", default: "NA"
     t.string "first_time", default: "NA"
     t.string "second_type", default: "NA"
@@ -53,8 +52,8 @@ ActiveRecord::Schema.define(version: 2020_08_13_195547) do
     t.text "body"
     t.decimal "latitude", null: false
     t.decimal "longitude", null: false
-    t.string "trip_date", null: false
-    t.string "trip_time", null: false
+    t.string "date", null: false
+    t.string "time", null: false
     t.bigint "user_id", null: false
     t.boolean "shared"
     t.datetime "created_at", null: false
@@ -80,7 +79,6 @@ ActiveRecord::Schema.define(version: 2020_08_13_195547) do
   create_table "weathers", force: :cascade do |t|
     t.string "date", null: false
     t.string "time", null: false
-    t.string "text_date", default: "NA"
     t.string "airTemperature", default: "NA"
     t.string "pressure", default: "NA"
     t.string "cloudCover", default: "NA"

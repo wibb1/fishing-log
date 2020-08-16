@@ -11,7 +11,7 @@ class CreateAstro < ActiveRecord::Migration[5.2]
       t.string :moonset, default: "NA"
       t.string :sunset, default: "NA"
       t.string :sunrise, default: "NA"
-      t.string :time, default: "NA"
+      t.string :date, default: "NA"
 
       t.belongs_to :trip
     end

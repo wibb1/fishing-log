@@ -3,7 +3,6 @@ class CreateWeather < ActiveRecord::Migration[5.2]
     create_table :weathers do |t|
       t.string :date, null: false
       t.string :time, null: false
-      t.string :text_date, default: "NA"
       t.string :airTemperature, default: "NA"
       t.string :pressure, default: "NA"
       t.string :cloudCover, default: "NA"
