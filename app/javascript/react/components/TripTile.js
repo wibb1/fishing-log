@@ -9,7 +9,8 @@ const TripTile = ({
 	body,
 	latitude,
 	longitude,
-	trip_time,
+	date,
+	time,
 	user_id,
 	shared,
 	firstTime,
@@ -28,7 +29,11 @@ const TripTile = ({
 	moonPhase,
 	sunrise,
 	sunset,
-	text_date
+	text_date, 
+	dawn, 
+	dusk, 
+	first_light, 
+	last_light
 }) => {
 	const success_color = (success) => {
 		let success_color;
