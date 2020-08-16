@@ -8,12 +8,12 @@
 
 <div class="section-indent m-md">
   <div class="container has-text-dark">
-  <%= form_for(@trip, url: trips_path(@trip.id)) do |f| %>
+  <%= form_for(@trip) do |f| %>
    
       <div class="field">
         <%= f.label :name, :class => "label" %>
         <div class="control">
-          <%= f.text_field :name, placeholder: "Spot Name", :class => "input" %>
+          <%= f.text_field :name, placeholder: "Spot Name", :class => "input", :required => true %>
         </div>
       </div>
 
@@ -21,7 +21,7 @@
         <%= f.label :success, "How was the fishing?", :class => "label" %>
         <div class="control">
           <div class="select">
-            <%= f.select :success, ["Good", "Bad"], :prompt => "Select One" %>
+            <%= f.select :success, ["Good", "Bad"], :prompt => "Select One", :required => true %>
           </div>
         </div>
       </div>
@@ -30,7 +30,7 @@
         <%= f.label :species, :class => "label" %>
         <div class="control">
           <div class="select">
-            <%= f.select :species, @species_list, :prompt => "Select One" %>
+            <%= f.select :species, @species_list, :prompt => "Select One", :required => true %>
           </div>
         </div>
       </div>
@@ -45,14 +45,14 @@
       <div class="field">
         <%= f.label :latitude, :class => "label" %>
         <div class="control">
-          <%= f.number_field :latitude, step: :any, placeholder: "Typically 41.3 to 41.8", :class => "input" %>
+          <%= f.number_field :latitude, step: :any, placeholder: "Typically 41.3 to 41.8", :class => "input", :required => true %>
         </div>
       </div>
 
       <div class="field">
         <%= f.label :longitude, :class => "label" %>
         <div class="control">
-          <%= f.number_field :longitude, step: :any, placeholder: "Typically -70 to -70.6", :class => "input" %>
+          <%= f.number_field :longitude, step: :any, placeholder: "Typically -70 to -70.6", :class => "input", :required => true %>
         </div>
       </div>
 
@@ -66,7 +66,7 @@
       <div class="field">
         <%= f.label :time, :class => "label" %>
         <div class="control">
-          <%= f.time_field :time, :class => "input" %>
+          <%= f.time_field :time, :class=> "input", :required => true  %>
         </div>
       </div>
 
@@ -74,7 +74,7 @@
         <%= f.label :shared, :class => "label" %>
         <div class="control">
           <div class="select">
-            <%= f.select :shared, ["Shared", "Private"], :prompt => "Select One" %>
+            <%= f.select :shared, ["Shared", "Private"], :prompt => "Select One", :required => true %>
           </div>
         </div>
       </div>    

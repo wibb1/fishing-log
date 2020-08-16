@@ -29,15 +29,14 @@ const TripTile = ({
 	moonPhase,
 	sunrise,
 	sunset,
-	text_date, 
-	dawn, 
-	dusk, 
-	first_light, 
-	last_light
+	dawn,
+	dusk,
+	first_light,
+	last_light,
 }) => {
 	const success_color = (success) => {
 		let success_color;
-		if (success === 'good') {
+		if (success === 'Good') {
 			success_color = 'is-success';
 		} else {
 			success_color = 'is-light';
@@ -51,41 +50,35 @@ const TripTile = ({
 				<div className="tile is-parent">
 					<Link to={`/trips/react/${id}`}>
 						<div className={`tile is-child notification ${success_color(success)}`}>
-							<div className="columns">
-								<div className="column">
-									<div className="box">
-										<div className="column">
-											<p className="subtitle is-size-3 is-size-4-touch">
-												<strong>{name}</strong>
-											</p>
-										</div>
+							<div className="box">
+								<div className="columns">
+									<div className="column">
+										<p className="title is-size-3 is-size-4-touch">{name}</p>
 									</div>
-									<div className="box">
-										<div className="column">
-											<div className="subtitle is-size-3 is-size-4-touch">
-												<p>{text_date}</p>
-											</div>
+									<div className="column is-vcentered">
+										<div className="subtitle is-size-3 is-size-4-touch">
+											<p className="has-text-right">{date} {time}</p>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div className="columns">
-								<div className="column">
-									<div className="box">
-										<p className="subtitle is-size-4 is-5-touch has-text-weight-b">
-											<strong className="">Whats on the menu:</strong> {species}
-										</p>
-									</div>
+						<div className="columns">
+							<div className="column">
+								<div className="box">
+									<p className="subtitle is-size-4 is-5-touch has-text-weight-b">
+										<strong className="">Whats on the menu:</strong> {species}
+									</p>
 								</div>
-								<hr />
 							</div>
+							<hr />
+						</div>
 							<div className="box">
 								<p className="is-6">{body}</p>
 							</div>
 							<div className="columns">
 								<div className="column m-2">
 									<div className="box center">
-										<table className="table has-text-centered">
+										<table className="table has-text-centered center">
 											<tbody>
 												<tr>
 													<th>Tide Time</th>
@@ -113,7 +106,7 @@ const TripTile = ({
 								</div>
 								<div className="column">
 									<div className="box center">
-										<table className="table has-text-centered">
+										<table className="table has-text-centered center">
 											<tbody>
 												<tr>
 													<th>Measurement</th>
@@ -146,7 +139,7 @@ const TripTile = ({
 								</div>
 								<div className="column is-centered">
 									<div className="box center">
-										<table className="table has-text-centered">
+										<table className="table has-text-centered center">
 											<tbody>
 												<tr>
 													<th>Moon Info</th>

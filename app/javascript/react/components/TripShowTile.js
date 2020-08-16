@@ -5,31 +5,40 @@ const TripShowTile = ({ trip }) => {
 	// debugger
 	const success_color = (success) => {
 		let success_color;
-		if (success === 'good') {
-			success_color = 'is-success';
-		} else if (success === 'bad') {
-			success_color = 'is-light';
+		if (success === 'Good') {
+			success_color = `is-success`;
+		} else if (success === 'Bad') {
+			success_color = `is-light`;
 		}
 		return success_color;
 	};
-	
+
 	return (
 		<div className="tile is-ancestor m-md">
-			<div className="tile is-vertical m-md">
-				<div className="tile m-md">
+			<div className="tile is-vertical m-md is-8">
+				<div className="tile">
 					<div className="tile is is-parent">
 						<article
-							className={`tile is-child notification ${success_color(trip.success)} center title has-text-grey`}
+							className={`tile title is-child notification ${success_color(trip.success)} has-text-dark`}
 						>
-							<p>{name}</p>
+							<div className="box desktop-m-t-md">
+								<p className="has-text-centered center">{trip.name}</p>
+							</div>
 						</article>
-						<div className="tile is-white is-2 is-child is-vcentered is-centered">
-							<Link to="/trips/react" className="button is-fullwidth is-dark m-md p-md is-medium">
-								Return to list
-							</Link>
-							<a href={`/trips/${trip.id}/edit`} className="button is-fullwidth is-dark m-md p-md is-medium">
-								Edit Spot
-							</a>
+						<div className="tile is-white is-2 is-child is-vcentered is-centered p-sm">
+							<div className="desktop-m-sm p-md">
+								<Link to="/trips/react" className="button is-fullwidth is-dark p-sm is-medium">
+									Return to list
+								</Link>
+							</div>
+							<div className="desktop-m-sm p-md">
+								<a
+									href={`/trips/${trip.id}/edit`}
+									className="button is-fullwidth is-dark is-medium"
+								>
+									Edit Spot
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -38,10 +47,14 @@ const TripShowTile = ({ trip }) => {
 						<div className="tile">
 							<div className="tile is-parent is-vertical">
 								<article
-									className={`tile is-child notification ${success_color(trip.success)} has-text-centered`}
+									className={`tile is-child notification ${success_color(
+										trip.success
+									)} has-text-centered`}
 								>
 									<div className="box">
-										<p>{trip.trip_time}</p>
+										<p>
+											{trip.date} {trip.time}
+										</p>
 									</div>
 									<div className="box center">
 										<table className="table has-text-centered">
@@ -68,16 +81,16 @@ const TripShowTile = ({ trip }) => {
 							</div>
 							<div className="tile is-parent">
 								<article className={`tile is-child notification ${success_color(trip.success)} center`}>
-								<figure className="image is-fullwidth">
-									<img src="https://bulma.io/images/placeholders/640x480.png"></img>
-								</figure>
+									<figure className="image is-fullwidth">
+										<img src="https://bulma.io/images/placeholders/640x480.png"></img>
+									</figure>
 								</article>
 							</div>
 						</div>
 						<div className="tile">
 							<div className="tile is-parent">
-								<article className={`tile is-child notification ${success_color(trip.success)}`}>
-									<div className="box is-fullheight">
+								<article className={`tile is-child center notification ${success_color(trip.success)}`}>
+									<div className="box is-fullheight center">
 										<h1>{trip.body}</h1>
 									</div>
 								</article>
@@ -195,15 +208,15 @@ const TripShowTile = ({ trip }) => {
 											<tbody>
 												<tr>
 													<td>Wave Direction</td>
-													<td>{trip.weather.waveDirection}</td>
+													<td></td>
 												</tr>
 												<tr>
 													<td>Wave Height</td>
-													<td>{trip.weather.waveHeight}</td>
+													<td></td>
 												</tr>
 												<tr>
 													<td>Wave Period</td>
-													<td>{trip.weather.wavePeriod}</td>
+													<td></td>
 												</tr>
 											</tbody>
 										</table>
@@ -234,20 +247,20 @@ const TripShowTile = ({ trip }) => {
 										<table className="table has-text-centered">
 											<tbody>
 												<tr>
-													<td>first-time</td>
 													<td>{trip.tide.first_type}</td>
+													<td>{trip.tide.first_time}</td>
 												</tr>
 												<tr>
-													<td>second_time</td>
 													<td>{trip.tide.second_type}</td>
+													<td>{trip.tide.second_time}</td>
 												</tr>
 												<tr>
-													<td>third_time</td>
 													<td>{trip.tide.third_type}</td>
+													<td>{trip.tide.third_time}</td>
 												</tr>
 												<tr>
-													<td>fourth_time</td>
 													<td>{trip.tide.fourth_type}</td>
+													<td>{trip.tide.fourth_time}</td>
 												</tr>
 											</tbody>
 										</table>
@@ -263,4 +276,3 @@ const TripShowTile = ({ trip }) => {
 };
 
 export default TripShowTile;
-

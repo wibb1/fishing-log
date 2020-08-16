@@ -35,6 +35,11 @@ const TripsIndexContainer = (props) => {
 				moonFraction={trip.astro.moonFraction}
 				moonPhase={trip.astro.moonPhase}
 				sunset={trip.astro.sunset}
+				sunrise={trip.astro.sunrise}
+				dawn={trip.astro.civilDawn}
+				dusk={trip.astro.civilDusk}
+				first_light={trip.astro.astronomicalDawn}
+				last_light={trip.astro.astronomicalDusk}
 				name={trip.name}
 				success={trip.success}
 				species={trip.species}
@@ -55,10 +60,6 @@ const TripsIndexContainer = (props) => {
 				secondType={trip.tide.second_type}
 				thirdType={trip.tide.third_type}
 				fourthType={trip.tide.fourth_type}
-				dawn={trip.astro.civilDawn}
-				dusk={trip.astro.civilDusk}
-				first_light={trip.astro.astronomicalDawn}
-				last_light={trip.astro.astronomicalDusk}
 			/>
 		);
 	});

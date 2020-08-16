@@ -1,9 +1,3 @@
 class TripShowSerializer < ActiveModel::Serializer
-  attributes :id, :name, :success, :species, :body, :latitude, :longitude, :date, :time, :shared, :tide, :weather, :astro, :user
-
-  belongs_to :user, if: :current_user?
-
-  def current_user?
-    current_user == object.user
-  end
+  attributes :id, :name, :success, :species, :body, :latitude, :longitude, :date, :time, :shared, :user_id, :tide, :weather, :astro
 end

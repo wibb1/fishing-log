@@ -1,5 +1,5 @@
 class Astro < ApplicationRecord
-  validates :time, presence: true
+  validates :date, presence: true
 
   belongs_to :trip
 end

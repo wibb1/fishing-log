@@ -23,12 +23,11 @@ const TripShowContainer = (props) => {
 			})
 			.then((response) => response.json())
 			.then((body) => {
-				debugger
+				
 				setTripState(body.trip)
 				})
 			.catch((error) => console.error(`Error in fetch: ${error.message}`));
 	}, []);
-
 
 
 	return (  
