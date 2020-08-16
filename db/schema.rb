@@ -16,31 +16,32 @@ ActiveRecord::Schema.define(version: 2020_08_13_195547) do
   enable_extension "plpgsql"
 
   create_table "astros", force: :cascade do |t|
-    t.text "astronomicalDawn", default: "", null: false
-    t.text "astronomicalDusk", default: "", null: false
-    t.text "civilDawn", default: "", null: false
-    t.text "civilDusk", default: "", null: false
-    t.float "moonFraction", default: 0.0, null: false
-    t.text "moonPhase", default: "", null: false
-    t.text "moonrise", default: "", null: false
-    t.text "moonset", default: "", null: false
-    t.text "sunset", default: "", null: false
-    t.text "sunrise", default: "", null: false
-    t.datetime "time", null: false
+    t.string "astronomicalDawn", default: "NA"
+    t.string "astronomicalDusk", default: "NA"
+    t.string "civilDawn", default: "NA"
+    t.string "civilDusk", default: "NA"
+    t.string "moonFraction", default: "NA"
+    t.string "moonPhase", default: "NA"
+    t.string "moonrise", default: "NA"
+    t.string "moonset", default: "NA"
+    t.string "sunset", default: "NA"
+    t.string "sunrise", default: "NA"
+    t.string "time", default: "NA"
     t.bigint "trip_id"
     t.index ["trip_id"], name: "index_astros_on_trip_id"
   end
 
   create_table "tides", force: :cascade do |t|
-    t.datetime "date", null: false
-    t.float "first_type", default: 0.0, null: false
-    t.text "first_time", default: ""
-    t.float "second_type", default: 0.0, null: false
-    t.text "second_time", default: ""
-    t.float "third_type", default: 0.0, null: false
-    t.text "third_time", default: ""
-    t.float "fourth_type", default: 0.0, null: false
-    t.text "fourth_time", default: ""
+    t.string "date", null: false
+    t.string "time", null: false
+    t.string "first_type", default: "NA"
+    t.string "first_time", default: "NA"
+    t.string "second_type", default: "NA"
+    t.string "second_time", default: "NA"
+    t.string "third_type", default: "NA"
+    t.string "third_time", default: "NA"
+    t.string "fourth_type", default: "NA"
+    t.string "fourth_time", default: "NA"
     t.bigint "trip_id"
     t.index ["trip_id"], name: "index_tides_on_trip_id"
   end
@@ -49,11 +50,11 @@ ActiveRecord::Schema.define(version: 2020_08_13_195547) do
     t.string "name", null: false
     t.string "success", null: false
     t.string "species", null: false
-    t.text "body", default: ""
-    t.decimal "latitude", default: "0.0", null: false
-    t.decimal "longitude", default: "0.0", null: false
-    t.datetime "trip_time", null: false
-    t.string "text_date", default: "", null: false
+    t.text "body"
+    t.decimal "latitude", null: false
+    t.decimal "longitude", null: false
+    t.string "trip_date", null: false
+    t.string "trip_time", null: false
     t.bigint "user_id", null: false
     t.boolean "shared"
     t.datetime "created_at", null: false
@@ -77,19 +78,20 @@ ActiveRecord::Schema.define(version: 2020_08_13_195547) do
   end
 
   create_table "weathers", force: :cascade do |t|
-    t.datetime "time", null: false
-    t.string "text_date", null: false
-    t.float "airTemperature", default: 0.0, null: false
-    t.float "pressure", default: 0.0, null: false
-    t.float "cloudCover", default: 0.0, null: false
-    t.float "currentDirection", default: 0.0, null: false
-    t.float "currentSpeed", default: 0.0, null: false
-    t.float "gust", default: 0.0, null: false
-    t.float "humidity", default: 0.0, null: false
-    t.float "seaLevel", default: 0.0, null: false
-    t.float "visibility", default: 0.0, null: false
-    t.float "windDirection", default: 0.0, null: false
-    t.float "windSpeed", default: 0.0, null: false
+    t.string "date", null: false
+    t.string "time", null: false
+    t.string "text_date", default: "NA"
+    t.string "airTemperature", default: "NA"
+    t.string "pressure", default: "NA"
+    t.string "cloudCover", default: "NA"
+    t.string "currentDirection", default: "NA"
+    t.string "currentSpeed", default: "NA"
+    t.string "gust", default: "NA"
+    t.string "humidity", default: "NA"
+    t.string "seaLevel", default: "NA"
+    t.string "visibility", default: "NA"
+    t.string "windDirection", default: "NA"
+    t.string "windSpeed", default: "NA"
     t.bigint "trip_id"
     t.index ["trip_id"], name: "index_weathers_on_trip_id"
   end

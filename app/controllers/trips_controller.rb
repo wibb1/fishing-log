@@ -30,18 +30,19 @@ class TripsController < ApplicationController
   end
 
   def create
-    @species_list = ["striped bass", "fluke", "bluefish", "bonita", "false ablicore", "scup", "tautog"]
+    binding.pry
     start_time = DateTime.strptime(trip_params["trip_time"], "%Y-%m-%dT%H:%M")
-    trip_params["trip_time"]=start_time
-      
-    @trip = Trip.new(trip_params)
+          
+    @trip = Trip.new()
+    @trip.trip_time = start_time
+    binding.pry
     @trip.text_date = start_time.strftime("%m-%d-%Y %H:%M")
     @trip.user = current_user
-
+    binding.pry
     if @trip.save
       flash[:notice] = "Trip added successfully"
       redirect_to '/trips/react'
-  
+      binding.pry
       create_weather(start_time, @trip.id)
       create_tide(start_time, @trip.id)
       create_astro(start_time, @trip.id)
@@ -50,7 +51,28 @@ class TripsController < ApplicationController
       flash.now[:error] = @trip.errors.full_messages.to_sentence
       render :new
     end  
+binding.pry
+    if @tide.save
+      flash[:notice] = "Tide added successfully"
+    else
+      flash.now[:error] = @tide.errors.full_messages.to_sentence
+    end
+    binding.pry
+    # the below should move back to create and out of this helper method
     
+    if @weather.save
+      flash[:notice] = "Weather added successfully"
+    else
+      flash.now[:error] = @weather.errors.full_messages.to_sentence
+      render :new
+    end
+    binding.pry
+    if @astro.save
+      flash[:notice] = "astro added successfully"
+    else
+      flash.now[:error] = @astro.errors.full_messages.to_sentence
+    end
+    binding.pry
   end
 
   def create_weather(start_time, trip_id)
@@ -64,32 +86,24 @@ class TripsController < ApplicationController
     end
 
     weather_parsed_response = JSON.parse(weather_response.body)
-    binding.pry
-    data = weather_parsed_response["hours"][0]
-
-    text_date = start_time.strftime("%m-%d-%Y %H:%M")
-    airTemperature = data["airTemperature"]["noaa"]*9/5+32
-    pressure = data["pressure"]["noaa"]*0.03
-    cloudCover = data["cloudCover"]["noaa"]
-
-    gust = data["gust"]["noaa"]*2.237
-    humidity = data["humidity"]["noaa"]
     
+    data = weather_parsed_response["hours"][0]
+    binding.pry
+    text_date = start_time.strftime("%m-%d-%Y %H:%M")
+    airTemperature = ((data["airTemperature"]["noaa"])*(9/5+32)).round(0)
+    pressure = (data["pressure"]["noaa"]*0.03).round(2)
+    cloudCover = (data["cloudCover"]["noaa"]).round(2)
+    gust = (data["gust"]["noaa"]*2.237).round(2)
+    humidity = data["humidity"]["noaa"]
     visibility = data["visibility"]["noaa"]
     windDirection = data["windDirection"]["noaa"]
-    windSpeed = data["windSpeed"]["noaa"]*2.237
+    windSpeed = (data["windSpeed"]["noaa"]*2.237).round(2)
     
     @weather = Weather.new(time: start_time, text_date: text_date, airTemperature: airTemperature, pressure: pressure, cloudCover: cloudCover, visibility: visibility, gust: gust,humidity: humidity,  windDirection: windDirection, windSpeed: windSpeed)
     
     @weather.trip_id = trip_id
     
-    # the below should move back to create and out of this helper method
-    if @weather.save
-      flash[:notice] = "Weather added successfully"
-    else
-      flash.now[:error] = @weather.errors.full_messages.to_sentence
-      render :new
-    end
+
 
   end
 
@@ -106,18 +120,16 @@ class TripsController < ApplicationController
     tide_parsed_response = JSON.parse(tide_response.body)
 
     tide_data = tide_parsed_response["data"]
-
-    first_type = tide_data[0]["height"]*3.28
+    binding.pry
+    first_type = (tide_data[0]["height"]*3.28).round(2)
     first_time = DateTime.strptime(tide_data[0]["time"], "%Y-%m-%dT%H:%M:%S%z").strftime("%m-%d-%Y %H:%M")
-
-    second_type = tide_data[1]["height"]*3.28
+    second_type = (tide_data[1]["height"]*3.28).round(2)
     second_time = DateTime.strptime(tide_data[1]["time"], "%Y-%m-%dT%H:%M:%S%z").strftime("%m-%d-%Y %H:%M")
-
-    third_type = tide_data[2]["height"]*3.28
+    third_type = (tide_data[2]["height"]*3.28).round(2)
     third_time = DateTime.strptime(tide_data[2]["time"], "%Y-%m-%dT%H:%M:%S%z").strftime("%m-%d-%Y %H:%M")
 
     if tide_data[3] != nil
-      fourth_type = tide_data[3]["height"]*3.28
+      fourth_type = (tide_data[3]["height"]*3.28).round(2)
       fourth_time = DateTime.strptime(tide_data[3]["time"], "%Y-%m-%dT%H:%M:%S%z").strftime("%m-%d-%Y %H:%M")
       @tide = Tide.new(date: start_time, first_type: first_type, first_time: first_time, second_type: second_type, second_time: second_time, third_type: third_type, third_time: third_time, fourth_type: fourth_type, fourth_time: fourth_time)
     else
@@ -125,12 +137,6 @@ class TripsController < ApplicationController
     end
 
     @tide.trip_id = trip_id
-
-    if @tide.save
-      flash[:notice] = "Tide added successfully"
-    else
-      flash.now[:error] = @tide.errors.full_messages.to_sentence
-    end
   end
 
   def create_astro(start_time, trip_id)
@@ -147,12 +153,12 @@ class TripsController < ApplicationController
     astro_parsed_response = JSON.parse(astro_response.body)
 
     astro_data = astro_parsed_response["data"]
-
+    binding.pry
     astronomicalDawn = DateTime.strptime(astro_data[0]["astronomicalDawn"], "%Y-%m-%dT%H:%M:%S%z").strftime("%m-%d-%Y %H:%M")
     astronomicalDusk = DateTime.strptime(astro_data[0]["astronomicalDusk"], "%Y-%m-%dT%H:%M:%S%z").strftime("%m-%d-%Y %H:%M")
     civilDawn = DateTime.strptime(astro_data[0]["civilDawn"], "%Y-%m-%dT%H:%M:%S%z").strftime("%m-%d-%Y %H:%M")
     civilDusk = DateTime.strptime(astro_data[0]["civilDusk"], "%Y-%m-%dT%H:%M:%S%z").strftime("%m-%d-%Y %H:%M")
-    moonFraction = astro_data[0]["moonFraction"]
+    moonFraction = (astro_data[0]["moonFraction"]).round(2)
     moonPhase = astro_data[0]["moonPhase"]["closest"]["text"]
     moonrise = DateTime.strptime(astro_data[0]["moonrise"], "%Y-%m-%dT%H:%M:%S%z").strftime("%m-%d-%Y %H:%M")
     moonset = DateTime.strptime(astro_data[0]["moonset"], "%Y-%m-%dT%H:%M:%S%z").strftime("%m-%d-%Y %H:%M")
@@ -160,15 +166,11 @@ class TripsController < ApplicationController
     sunset = DateTime.strptime(astro_data[0]["sunset"], "%Y-%m-%dT%H:%M:%S%z").strftime("%m-%d-%Y %H:%M")
     time = DateTime.strptime(astro_data[0]["time"], "%Y-%m-%dT%H:%M:%S%z").strftime("%m-%d-%Y %H:%M")
 
-    @astro = Astro.new(astronomicalDawn: astronomicalDawn, astronomicalDusk: astronomicalDusk, civilDawn: civilDawn, civilDusk: civilDusk, moonFraction: moonFraction, moonPhase: moonPhase, moonrise: moonrise, moonset: moonset,sunrise: sunrise, sunset: sunset, time: time)
-
+    @astro = Astro.new(astronomicalDawn: astronomicalDawn, astronomicalDusk: astronomicalDusk, civilDawn: civilDawn, civilDusk: civilDusk, moonFraction: moonFraction, moonPhase: moonPhase, moonrise: moonrise, moonset: moonset, sunrise: sunrise, sunset: sunset, time: time)
+    binding.pry
     @astro.trip_id = trip_id
 
-    if @astro.save
-      flash[:notice] = "astro added successfully"
-    else
-      flash.now[:error] = @astro.errors.full_messages.to_sentence
-    end
+
   end
 
   private 

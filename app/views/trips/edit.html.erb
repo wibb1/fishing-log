@@ -8,7 +8,7 @@
 
 <div class="section-indent m-md">
   <div class="container has-text-dark">
-  <%= form_for(@trip, url: trips_path, html: { method: :patch }) do |f| %>
+  <%= form_for(@trip, url: '/trips/react/', html: { method: :patch }) do |f| %>
     
     
       <div class="field">
@@ -60,7 +60,14 @@
       <div class="field">
         <%= f.label :trip_time, :class => "label" %>
         <div class="control">
-          <%= f.datetime_local_field :trip_time, :default => :trip_time, :class => "input" %>
+          <%= f.date :trip_date, :default => :trip_date, :class => "input" %>
+        </div>
+      </div>
+
+      <div class="field">
+        <%= f.label :trip_time, :class => "label" %>
+        <div class="control">
+          <%= f.time :trip_time, :default => :trip_time, :class => "input" %>
         </div>
       </div>
 

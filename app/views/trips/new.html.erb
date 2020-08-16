@@ -59,7 +59,14 @@
       <div class="field">
         <%= f.label :trip_time, :class => "label" %>
         <div class="control">
-          <%= f.datetime_local_field :trip_time, :class => "input" %>
+          <%= f.date :trip_date, :class => "input" %>
+        </div>
+      
+      </div>
+      <div class="field">
+        <%= f.label :trip_time, :class => "label" %>
+        <div class="control">
+          <%= f.time :trip_time, :class => "input" %>
         </div>
       </div>
 

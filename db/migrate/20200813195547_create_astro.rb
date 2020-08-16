@@ -1,17 +1,17 @@
 class CreateAstro < ActiveRecord::Migration[5.2]
   def change
     create_table :astros do |t|
-      t.text :astronomicalDawn, default: "", null: false
-      t.text :astronomicalDusk, default: "", null: false
-      t.text :civilDawn, default: "", null: false
-      t.text :civilDusk, default: "", null: false
-      t.float :moonFraction, default: 0.0, null: false
-      t.text :moonPhase, default: "", null: false
-      t.text :moonrise, default: "", null: false
-      t.text :moonset, default: "", null: false
-      t.text :sunset, default: "", null: false
-      t.text :sunrise, default: "", null: false
-      t.datetime :time, default: "", null: false
+      t.string :astronomicalDawn, default: "NA"
+      t.string :astronomicalDusk, default: "NA"
+      t.string :civilDawn, default: "NA"
+      t.string :civilDusk, default: "NA"
+      t.string :moonFraction, default: "NA"
+      t.string :moonPhase, default: "NA"
+      t.string :moonrise, default: "NA"
+      t.string :moonset, default: "NA"
+      t.string :sunset, default: "NA"
+      t.string :sunrise, default: "NA"
+      t.string :time, default: "NA"
 
       t.belongs_to :trip
     end
