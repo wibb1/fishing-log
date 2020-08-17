@@ -14,6 +14,7 @@ class Api::V1::TripsController < ApiController
   end
 
   def show
+    binding.pry
     render json: Trip.find(params[:id]), serializer: TripShowSerializer
   end
 

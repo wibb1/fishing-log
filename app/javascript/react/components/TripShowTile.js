@@ -15,13 +15,13 @@ const TripShowTile = ({ trip }) => {
 
 	return (
 		<div className="tile is-ancestor m-md">
-			<div className="tile is-vertical m-md is-8">
+			<div className="tile is-vertical m-md is-fullwidth">
 				<div className="tile">
 					<div className="tile is is-parent">
 						<article
-							className={`tile title is-child notification ${success_color(trip.success)} has-text-dark`}
+							className={`tile title is-child notification is-fullwidth ${success_color(trip.success)} has-text-dark`}
 						>
-							<div className="box desktop-m-t-md">
+							<div className="box desktop-m-t-md is-fullwidth">
 								<p className="has-text-centered center">{trip.name}</p>
 							</div>
 						</article>

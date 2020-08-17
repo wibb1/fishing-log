@@ -6,7 +6,7 @@ class TripsController < ApplicationController
   end
 
   def new
-    @trip = Trip.new
+    @trip = Trip.new()
     @trip.user = current_user
     @species_list = ["striped bass", "fluke", "bluefish", "bonita", "false ablicore", "scup", "tautog"]
   end
@@ -64,7 +64,7 @@ class TripsController < ApplicationController
     else
       @notices = []
       @errors = []
-      if @trip.save
+      if @trip_new.save
         @notices.push("Trip")
         puts "***Trip successfully saved***"
         create_weather(start_DateTime, end_DateTime_hour, start_date, start_time)
@@ -93,7 +93,7 @@ class TripsController < ApplicationController
         create_astro(start_DateTime, end_DateTime_day, start_date)
           if @astro.save
             puts "***Astrological successfully saved***"
-            redirect_to "/trips/react/#{@trip.id}"
+            redirect_to "/trips/react/#{@trip_new.id}"
           else
             Weather.destroy(trip_params.id.weather.id)
             Tide.destroy(trip_params.id.tide.id)
@@ -113,7 +113,7 @@ class TripsController < ApplicationController
     weather_request = 'airTemperature,pressure,cloudCover,currentDirection,currentSpeed,gust,humidity,seaLevel,visibility,windDirection,windSpeed'
 
     api_key = ENV["STORMGLASS_API_KEY"]
-    weather_response = Faraday.get("https://api.stormglass.io/v2/weather/point?lat=#{@trip.latitude}&lng=#{@trip.longitude}&start=#{start_DateTime}&end=#{end_DateTime_hour}&source=#{"noaa"}&params=#{weather_request}") do |req|  
+    weather_response = Faraday.get("https://api.stormglass.io/v2/weather/point?lat=#{@trip_new.latitude}&lng=#{@trip_new.longitude}&start=#{start_DateTime}&end=#{end_DateTime_hour}&source=#{"noaa"}&params=#{weather_request}") do |req|  
       req.headers["Authorization"] = api_key
     end
 
@@ -129,12 +129,12 @@ class TripsController < ApplicationController
     windDirection = data["windDirection"]["noaa"].to_s
     windSpeed = (data["windSpeed"]["noaa"]*2.237).round(2).to_s
     
-    @weather = Weather.new(time: start_DateTime, date: end_DateTime_hour, airTemperature: airTemperature, pressure: pressure, cloudCover: cloudCover, visibility: visibility, gust: gust,humidity: humidity,  windDirection: windDirection, windSpeed: windSpeed, trip_id: @trip.id)
+    @weather = Weather.new(time: start_DateTime, date: end_DateTime_hour, airTemperature: airTemperature, pressure: pressure, cloudCover: cloudCover, visibility: visibility, gust: gust,humidity: humidity,  windDirection: windDirection, windSpeed: windSpeed, trip_id: @trip_new.id)
   end
 
   def create_tide(start_DateTime, end_DateTime_day, start_date)
     api_key = ENV["STORMGLASS_API_KEY"]
-    tide_url = "https://api.stormglass.io/v2/tide/extremes/point?lat=#{@trip.latitude}&lng=#{@trip.longitude}&start=#{start_DateTime}&end=#{end_DateTime_day}"
+    tide_url = "https://api.stormglass.io/v2/tide/extremes/point?lat=#{@trip_new.latitude}&lng=#{@trip_new.longitude}&start=#{start_DateTime}&end=#{end_DateTime_day}"
     tide_response = Faraday.get(tide_url) do |req| 
       req.headers["Authorization"] = api_key
     end
@@ -157,13 +157,13 @@ class TripsController < ApplicationController
       fourth_time = DateTime.strptime(tide_data[3]["time"], "%Y-%m-%dT%H:%M:%S%z").strftime("%m-%d-%Y %H:%M")
       fourth_height = (tide_data[3]["height"]*3.28).round(2).to_s
     end
-    @tide = Tide.new(date: start_date, first_type: first_type, first_time: first_time, first_height: first_time, second_type: second_type, second_time: second_time, second_height: second_height, third_type: third_type, third_time: third_time, third_height: third_height, fourth_type: fourth_type, fourth_time: fourth_time, fourth_height: fourth_height, trip_id: @trip.id)
+    @tide = Tide.new(date: start_date, first_type: first_type, first_time: first_time, first_height: first_time, second_type: second_type, second_time: second_time, second_height: second_height, third_type: third_type, third_time: third_time, third_height: third_height, fourth_type: fourth_type, fourth_time: fourth_time, fourth_height: fourth_height, trip_id: @trip_new.id)
   end
 
   def create_astro(start_DateTime, end_DateTime_day, start_date)
     astro_request = "astronomicalDawn,astronomicalDusk,civilDawn,civilDusk,moonFraction,moonPhase,moonrise,moonset,sunrise,sunset,time"
     api_key = ENV["STORMGLASS_API_KEY"]
-    astro_url = "https://api.stormglass.io/v2/astronomy/point?lat=#{@trip.latitude}&lng=#{@trip.longitude}&start=#{start_DateTime}&end=#{end_DateTime_day}&params=#{astro_request}"
+    astro_url = "https://api.stormglass.io/v2/astronomy/point?lat=#{@trip_new.latitude}&lng=#{@trip_new.longitude}&start=#{start_DateTime}&end=#{end_DateTime_day}&params=#{astro_request}"
     astro_response = Faraday.get(astro_url) do |req| 
       req.headers["Authorization"] = api_key
     end
@@ -184,7 +184,7 @@ class TripsController < ApplicationController
     sunset = DateTime.strptime(astro_data[0]["sunset"], "%Y-%m-%dT%H:%M:%S%z").strftime("%m-%d-%Y %H:%M")
     time = DateTime.strptime(astro_data[0]["time"], "%Y-%m-%dT%H:%M:%S%z").strftime("%m-%d-%Y %H:%M")
 
-    @astro = Astro.new(astronomicalDawn: astronomicalDawn, astronomicalDusk: astronomicalDusk, civilDawn: civilDawn, civilDusk: civilDusk, moonFraction: moonFraction, moonPhase: moonPhase, moonrise: moonrise, moonset: moonset, sunrise: sunrise, sunset: sunset, date: start_date, trip_id: @trip.id)
+    @astro = Astro.new(astronomicalDawn: astronomicalDawn, astronomicalDusk: astronomicalDusk, civilDawn: civilDawn, civilDusk: civilDusk, moonFraction: moonFraction, moonPhase: moonPhase, moonrise: moonrise, moonset: moonset, sunrise: sunrise, sunset: sunset, date: start_date, trip_id: @trip_new.id)
     
   end
 
