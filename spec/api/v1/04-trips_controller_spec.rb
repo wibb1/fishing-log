@@ -59,7 +59,6 @@ RSpec.describe Api::V1::TripsController, type: :controller do
 
       returned_json = JSON.parse(response.body)
    
-       binding.pry
       expect(returned_json["trips"]["trips"][0]["weather"]["id"]).to eq(weather1.id)
       expect(returned_json["trips"]["trips"][0]["tide"]["id"]).to eq(tide1.id)
       expect(returned_json["trips"]["trips"][0]["astro"]["id"]).to eq(astro1.id)
