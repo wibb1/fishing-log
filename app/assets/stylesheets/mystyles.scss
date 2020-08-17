@@ -2,33 +2,32 @@
 @import "../../../node_modules/bulma/sass/utilities/initial-variables";
 @import "../../../node_modules/bulma/sass/utilities/functions";
 // Import a Google Font
-@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
-@import "font-awesome";
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i');
 
 // 2. Set your brand cloros
-// Update blue
+
 $dark-blue: #211f1e;
 $dark-blue-invert: findColorInvert($dark-blue);
-$light-blue: hsl(204, 63.1%, 79.8%);
+$light-blue: rgb(203, 228, 245);
 $light-blue-invert: findColorInvert($light-blue);
 $med-blue: #7c94ac;
 $med-blue-invert: findColorInvert($med-blue);
-$tan: #A48D65;
+$tan: #7fff00;
 $tan-invert: findColorInvert($tan);
 $deep-blue: #6bb4cc;
 $deep-blue-invert: findColorInvert($deep-blue);
-$pale-orange: #ef9622;
-$pale-orange-invert: findColorInvert($pale-orange);
-$pale-green: hsl(89, 53.0%, 51.6%);
+$pale-red: #f76a6a;
+$pale-red-invert: findColorInvert($pale-red);
+$pale-green: rgb(218, 247, 188);
 $pale-green-invert: findColorInvert($pale-green);
 $pale-yellow: #ece711;
 $pale-yellow-invert: findColorInvert($pale-yellow);
 
 // Add a serif family
-$family-serif: "Merriweather", "Georgia", serif;
+$family-serif: "Roboto", serif;
 
 // 3. Set the derived variables
-// Use the new pink as the primary color
+
 $light: $light-blue;
 $light-invert: $light-blue-invert;
 $dark: $dark-blue;
@@ -36,10 +35,10 @@ $dark-invert: $dark-blue-invert;
 $primary: $deep-blue;
 $primary-invert: $deep-blue-invert;
 $link: $med-blue;
-$info: $med-blue;
+$info: $tan;
 $success: $pale-green;
 $warning: $pale-yellow;
-$danger: $pale-orange;
+$danger: $pale-red;
 
 
 // Use the new serif family
@@ -70,7 +69,7 @@ $addColors: (
   ),
 );
 $colors: map-merge($colors, $addColors);
-
+$table-background-color: transpasparent;
 // 6. Import the rest of Bulma
 @import "../../../node_modules/bulma/bulma.sass";
 

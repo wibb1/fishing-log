@@ -1,5 +1,3 @@
 class TripShowSerializer < ActiveModel::Serializer
-  attributes :id, :name, :body, :success, :shared, :species, :user_id, :latitude, :longitude, :trip_time
-
-  has_many :users
+  attributes :id, :name, :success, :species, :body, :latitude, :longitude, :date, :time, :shared, :user_id, :tide, :weather, :astro
 end
