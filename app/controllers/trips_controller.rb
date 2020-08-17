@@ -17,6 +17,7 @@ class TripsController < ApplicationController
   end
   
   def update
+    @trip = Trip.find(params[:id])
     if @trip.update(update_params)
       redirect_to "/trips/react/#{update_params[:id]}"
     else
