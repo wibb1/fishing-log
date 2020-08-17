@@ -15,7 +15,6 @@ export const App = (props) => {
 		<BrowserRouter>
 			<Switch>
 				<Route exact path="/trips" component={TripsIndexContainer} />
-				<Route exact path="/trips/:id" component={TripShowContainer} />
 			</Switch>
 		</BrowserRouter>
 	);
