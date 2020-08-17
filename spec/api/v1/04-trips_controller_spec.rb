@@ -5,7 +5,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
 
     let!(:user1) {User.create(email: "thumb@aol.com", password: "123456", username: "Tommy", first_name: "Tom", last_name: "Thumb")}
 
-    let!(:trip1) {Trip.create(name: "First trip of the season", success: "good", species: "blue fish", time: DateTime.new(2020,5,20,8,45,0), date: DateTime.new(2020,5,20,8,45,0).strftime("%m-%d-%Y %H:%M"), body: "The blues were thick off the rock 100 yards from shore.  If your bait managed to get through them then you had a shot at a bass.  We switched to a heavier sinker to get down a little quicker and it helped.  Blues are fun but you lose a lot of gear when you are trying to get bass", latitude: 41.595, longitude: -70.81,  user_id: user1.id, shared: false)}
+    let!(:trip1) {Trip.create(name: "First trip of the season", success: "good", species: "blue fish", time: DateTime.new(2020,5,20,8,45,0), date: DateTime.new(2020,5,20,8,45,0).strftime("%m-%d-%Y %H:%M"), body: "The blues were thick off the rock 100 yards from shore.  If your bait managed to get through them then you had a shot at a bass.  We switched to a heavier sinker to get down a little quicker and it helped.  Blues are fun but you lose a lot of gear when you are trying to get bass", latitude: 41.595, longitude: -70.81,  user_id: user1.id, shared: true)}
 
     let!(:trip2) {Trip.create(name: "Second Trip of the season", time: DateTime.new(2020,6,20,8,45,0),date: DateTime.new(2020,6,20,8,45,0).strftime("%m-%d-%Y %H:%M"), success: "bad", species: "none", body: "We couldn't catch a cold today.  This is usally a great spot but the bright sun early in the season made the fish skittish.  Fishing is still better than work and it is always nice to get out on the boat but it is better when you are catching.", latitude: 41.59, longitude: -70.843, user_id: user1.id, shared: true)}
 
@@ -23,7 +23,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
 
     let!(:user2) {User.create(email: "apple@aol.com", password: "123456", username: "Johny", first_name: "John", last_name: "Apple")}
 
-    let!(:trip3) {Trip.create(name: "First trip", success: "Good", species: "blue fish", time: DateTime.new(2020,6,20,8,45,0), date: DateTime.new(2020,6,20,8,45,0).strftime("%m-%d-%Y %H:%M"), body: "Trolling for blues and my son and I had a ball. Several double hookups on a single troll.  Perfect eating size too, about 15-20 inches.  We had a blast trolling light tackle, tried casting for them but they seemed to be spread out along the shore.  Not sure what they were after but it is a spot to go back to.", latitude: 41.59, longitude: -70.843, user_id: user2.id, shared: true)}
+    let!(:trip3) {Trip.create(name: "New trip", success: "Good", species: "blue fish", time: DateTime.new(2020,6,20,8,45,0), date: DateTime.new(2020,6,20,8,45,0).strftime("%m-%d-%Y %H:%M"), body: "Trolling for blues and my son and I had a ball. Several double hookups on a single troll.  Perfect eating size too, about 15-20 inches.  We had a blast trolling light tackle, tried casting for them but they seemed to be spread out along the shore.  Not sure what they were after but it is a spot to go back to.", latitude: 41.59, longitude: -70.843, user_id: user2.id, shared: true)}
 
     let!(:trip4) {Trip.create(name: "Fluke Fishing", success: "bad", species: "fluke", time: DateTime.new(2020,7,20,8,45,0), date: DateTime.new(2020,7,20,8,45,0).strftime("%m-%d-%Y %H:%M"), body: "We had a tough day trying to get some fluke.  This is one of 5 or 6 spots.  We caught some small sea bass but were really after fluke and the sea bass were all small.  Maybe next time.  Fluke are getting harder and harder to find around here, not sure what is going on but fishing for them has become a real challenge.", latitude: 41.59, longitude: -70.843, user_id: user2.id, shared: false)}
 
@@ -59,7 +59,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
 
       returned_json = JSON.parse(response.body)
    
-      expect(returned_json["trips"]["trips"][0]["name"]).to eq(trip1.name)
+       
       expect(returned_json["trips"]["trips"][0]["weather"]["id"]).to eq(weather1.id)
       expect(returned_json["trips"]["trips"][0]["tide"]["id"]).to eq(tide1.id)
       expect(returned_json["trips"]["trips"][0]["astro"]["id"]).to eq(astro1.id)
@@ -74,7 +74,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       get :index
 
       returned_json = JSON.parse(response.body)
-      expect(returned_json["trips"]["trips"][0]["name"]).not_to include(trip2.name)
+      expect(returned_json["trips"]["trips"][0]["name"]).not_to include(trip3.name)
 
       sign_out user1
     end
