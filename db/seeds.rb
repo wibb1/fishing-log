@@ -1,5 +1,9 @@
 # users
-Destroy.all
+Trip.destroy_all
+User.destroy_all
+Tide.destroy_all
+Astro.destroy_all
+Weather.destroy_all
 
 user1 = User.create!(email: "thumb@aol.com", password: "123456", username: "Tommy", first_name: "Tom", last_name: "Thumb")
 user2 = User.create!(email: "apple@aol.com", password: "123456", username: "Johny", first_name: "John", last_name: "Apple")
