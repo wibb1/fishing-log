@@ -7,7 +7,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
 
     let!(:trip1) {Trip.create(name: "First trip of the season", success: "good", species: "blue fish", time: DateTime.new(2020,5,20,8,45,0), date: DateTime.new(2020,5,20,8,45,0).strftime("%m-%d-%Y %H:%M"), body: "The blues were thick off the rock 100 yards from shore.  If your bait managed to get through them then you had a shot at a bass.  We switched to a heavier sinker to get down a little quicker and it helped.  Blues are fun but you lose a lot of gear when you are trying to get bass", latitude: 41.595, longitude: -70.81,  user_id: user1.id, shared: true)}
 
-    let!(:trip2) {Trip.create(name: "Second Trip of the season", time: DateTime.new(2020,6,20,8,45,0),date: DateTime.new(2020,6,20,8,45,0).strftime("%m-%d-%Y %H:%M"), success: "bad", species: "none", body: "We couldn't catch a cold today.  This is usally a great spot but the bright sun early in the season made the fish skittish.  Fishing is still better than work and it is always nice to get out on the boat but it is better when you are catching.", latitude: 41.59, longitude: -70.843, user_id: user1.id, shared: true)}
+    let!(:trip2) {Trip.create(name: "Second Trip of the season", time: DateTime.new(2020,6,20,8,45,0),date: DateTime.new(2020,6,20,8,45,0).strftime("%m-%d-%Y %H:%M"), success: "bad", species: "none", body: "We could not catch a cold today.  This is usally a great spot but the bright sun early in the season made the fish skittish.  Fishing is still better than work and it is always nice to get out on the boat but it is better when you are catching.", latitude: 41.59, longitude: -70.843, user_id: user1.id, shared: true)}
 
     let!(:weather1) {Weather.create(time: DateTime.new(2020,5,20,8,45,0), date: DateTime.new(2020,5,20,8,45,0).strftime("%m-%d-%Y %H:%M"), airTemperature: 54, pressure: 29, cloudCover: 0.2, currentDirection: 0,currentSpeed: 5, gust: 15, humidity: 62, seaLevel: 0.95, visibility: 2, windDirection: 25, windSpeed: 5, trip_id: trip1.id)}
 
@@ -51,7 +51,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
       sign_out user1
     end
 
-    it "returns user1's trips in the database - line 54" do
+    it "returns user1 trips in the database - line 54" do
     
       sign_in user1
       
@@ -59,7 +59,7 @@ RSpec.describe Api::V1::TripsController, type: :controller do
 
       returned_json = JSON.parse(response.body)
    
-       
+       binding.pry
       expect(returned_json["trips"]["trips"][0]["weather"]["id"]).to eq(weather1.id)
       expect(returned_json["trips"]["trips"][0]["tide"]["id"]).to eq(tide1.id)
       expect(returned_json["trips"]["trips"][0]["astro"]["id"]).to eq(astro1.id)
