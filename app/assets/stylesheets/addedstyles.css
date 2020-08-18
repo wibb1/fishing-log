@@ -27,3 +27,10 @@
   min-height: 500;
   max-height: 500
 }
+
+.nav_bar_image {
+  height: 112px;
+  width: 112px;
+  border-image-width: 5px;
+  border-color: #211f1e;
+}
