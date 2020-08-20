@@ -1,6 +1,15 @@
 class Api::V1::TripsController < ApiController
   def index
-    trips = current_user.trips
+    if params[:filter_for_shared]
+      trips=Trips.all.map{ |trip| 
+        if trip.shared
+          trip
+        end
+        }
+    else 
+     trips = current_user.trips
+    end
+  
     render json: { trips: serialized_data(trips, TripSerializer, current_user) }
   end
 
