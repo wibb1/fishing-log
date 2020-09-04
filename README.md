@@ -2,25 +2,4 @@
 
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version 2.6.5
-
-* System dependencies
-
-* Configuration
-
-* Database creation - bundle exec rake db:setup
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This app was fine when run locally but never functioned correctly on Heroku so it was scrapped and redesigned in fishing-log-2.  I believe the problem with this app was that the weather, tides, and astro classes would fail to create correctly due to a failure in the api call used during creation. This would would then cause the entire app to fail when the missing information was called on in the show pages.  I attempted to resolve this issue by cascading through the class creation and removing classes that were created using destroy if a creation failed to save, however the app was still unstable on Heroku.  Since the classes were bound by only a has_one relationship I decided to scrap the first attempt and create Fishing-log-2.  Fishing-log-2 resolved this error by making all the information part of a "record" rather than having seperate classes for each api call.  This app was more stable and is deployed to Heroku.
